@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import {
   Collapse,
   Navbar,
@@ -13,7 +14,7 @@ import {
   DropdownItem
 } from 'reactstrap'
 
-export default class Example extends React.Component {
+class MyNavbar extends React.Component {
   constructor(props) {
     super(props)
 
@@ -27,11 +28,17 @@ export default class Example extends React.Component {
       isOpen: !this.state.isOpen
     })
   }
+
+  goToHome = e => {
+    e.preventDefault()
+    this.props.history.push('/')
+  }
+
   render() {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">
+          <NavbarBrand onClick={this.goToHome} href="/">
             <img
               className="mr-2"
               src="https://image.flaticon.com/icons/png/512/87/87390.png"
@@ -69,3 +76,6 @@ export default class Example extends React.Component {
     )
   }
 }
+
+
+export default withRouter(MyNavbar)

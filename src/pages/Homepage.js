@@ -1,26 +1,21 @@
 import React from 'react'
 import axios from 'axios'
 import styled from 'styled-components'
-import {
-  Card,
-  CardText,
-  CardBody,
-  CardHeader
-} from 'reactstrap'
+import { Card, CardBody, CardHeader } from 'reactstrap'
 import FullPageLoader from '../components/FullPageLoader'
-import Navbar from '../components/Navbar'
 import { Link } from 'react-router-dom'
+import UserImages from '../containers/UserImages'
 
 const UsersContainer = styled.div`
   display: flex;
-  align-items: center;
+  /* align-items: center; */
   justify-content: center;
   flex-wrap: wrap;
 `
 
 const UserCard = styled(Card)`
   width: 300px;
-  margin: .8em .6em;
+  margin: 0.8em 0.6em;
 `
 
 const UserCardHeader = styled(CardHeader)`
@@ -43,7 +38,7 @@ const UserCardHeader = styled(CardHeader)`
   }
 `
 
-class Homepage extends React.Component {
+class HomePage extends React.Component {
   state = {
     users: [],
     loading: true
@@ -76,13 +71,13 @@ class Homepage extends React.Component {
                   <img src={user.profileImage} alt={user.username} />
                   <div className="title">
                     <div className="text-muted">{user.id}</div>
-                    <Link to={`/users/${user.id}`} className="username">{user.username}</Link>
+                    <Link to={`/users/${user.id}`} className="username">
+                      {user.username}
+                    </Link>
                   </div>
                 </UserCardHeader>
                 <CardBody>
-                  <CardText>
-                    User Images Here
-                  </CardText>
+                  <UserImages userId={user.id} />
                 </CardBody>
               </UserCard>
             ))}
@@ -93,4 +88,4 @@ class Homepage extends React.Component {
   }
 }
 
-export default Homepage
+export default HomePage
