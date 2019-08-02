@@ -7,26 +7,24 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  NavLink
 } from 'reactstrap'
+import AuthModal from './AuthModal'
 
 class MyNavbar extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.toggle = this.toggle.bind(this)
-    this.state = {
-      isOpen: false
-    }
+  state = {
+    navbarExpanded: false,
+    showModal: true
   }
-  toggle() {
+
+  toggleNavExpand = () => {
     this.setState({
-      isOpen: !this.state.isOpen
+      navbarExpanded: !this.state.navbarExpanded
     })
+  }
+
+  toggleModal = () => {
+    this.setState({ showModal: !this.state.showModal })
   }
 
   goToHome = e => {
@@ -35,9 +33,11 @@ class MyNavbar extends React.Component {
   }
 
   render() {
+    const { showModal } = this.state
     return (
       <div>
-        <Navbar color="light" light expand="md">
+        {showModal && <AuthModal toggleModal={this.toggleModal} />}
+        <Navbar color="light" light expand="xs">
           <NavbarBrand onClick={this.goToHome} href="/">
             <img
               className="mr-2"
@@ -47,18 +47,20 @@ class MyNavbar extends React.Component {
             />
             nextagram
           </NavbarBrand>
-          <NavbarToggler onClick={this.toggle} />
-          <Collapse isOpen={this.state.isOpen} navbar>
+          <NavbarToggler onClick={this.toggleNavExpand} />
+          <Collapse isOpen={this.state.navbarExpanded} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Foo</NavLink>
+                <NavLink onClick={this.toggleModal} href="#">
+                  Login
+                </NavLink>
               </NavItem>
-              <NavItem>
+              {/* <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">
                   Bar
                 </NavLink>
-              </NavItem>
-              <UncontrolledDropdown nav inNavbar>
+              </NavItem> */}
+              {/* <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
                   Something
                 </DropdownToggle>
@@ -68,7 +70,7 @@ class MyNavbar extends React.Component {
                   <DropdownItem divider />
                   <DropdownItem>Reset</DropdownItem>
                 </DropdownMenu>
-              </UncontrolledDropdown>
+              </UncontrolledDropdown> */}
             </Nav>
           </Collapse>
         </Navbar>
@@ -76,6 +78,5 @@ class MyNavbar extends React.Component {
     )
   }
 }
-
 
 export default withRouter(MyNavbar)
