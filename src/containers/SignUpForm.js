@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, FormGroup, Label, Input, FormFeedback } from 'reactstrap'
 import Axios from 'axios'
+import { toast } from 'react-toastify'
 
 class SignUpForm extends Component {
   constructor(props) {
@@ -57,9 +58,31 @@ class SignUpForm extends Component {
     }
   }
 
+  handleSignUp = e => {
+    e.preventDefault()
+    const { username, email, password } = this.state
+
+    Axios.post('https://insta.nextacademy.com/api/v1/users/', {
+      username,
+      email,
+      password
+    })
+    .then(response => {
+      toast(`${username} is successfully created!`)
+      this.props.toggleModal()
+    })
+    .catch(error => {
+      error.response.data.message.forEach(msg => {
+        toast(msg, {
+          className: 'bg-danger text-white',
+        })
+      })
+    });
+  }
+
   render() {
     return (
-      <Form>
+      <Form onSubmit={this.handleSignUp}>
         <FormGroup>
           <Label>Email</Label>
           <Input
@@ -90,8 +113,8 @@ class SignUpForm extends Component {
             name="password"
           />
         </FormGroup>
-        <p onClick={this.props.toggleForm} className="text-danger">
-          Click here to Login!
+        <p onClick={this.props.toggleForm} className="text-info">
+          Click here to Login
         </p>
         <Button color="info">Submit</Button>
       </Form>

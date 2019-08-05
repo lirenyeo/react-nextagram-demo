@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 class LoginForm extends Component {
   state = {
@@ -22,7 +22,7 @@ class LoginForm extends Component {
           <Label>Password</Label>
           <Input type="password" name="password" />
         </FormGroup>
-        <p onClick={this.props.toggleForm} className="text-danger">Click here to sign up!</p>
+        <p onClick={this.props.toggleForm} className="text-info">Click here to sign up</p>
         <Button color="info">Submit</Button>
       </Form>
     )

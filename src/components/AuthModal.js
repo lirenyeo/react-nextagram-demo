@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap'
+import { Button } from 'reactstrap'
 import LoginForm from '../containers/LoginForm'
 import SignUpForm from '../containers/SignUpForm'
 
@@ -23,6 +23,16 @@ const Container = styled.div`
   padding: 1em;
   width: 95%;
   max-width: 450px;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h4 {
+    margin: 0;
+  }
 `
 
 class AuthModal extends Component {
@@ -36,19 +46,22 @@ class AuthModal extends Component {
     })
   }
 
-
   render() {
     return (
       <Background>
         <Container>
-          {this.state.isLogin ? <h4>Login</h4> : <h4>Sign Up</h4>}
-          <hr />
-          {this.state.isLogin ? <LoginForm toggleForm={this.toggleForm} /> : <SignUpForm toggleForm={this.toggleForm} />}
-          <div className="my-5">
-            <Button color="secondary" onClick={this.props.toggleModal}>
-              Cancel
+          <div className="header">
+            {this.state.isLogin ? <h4>Login</h4> : <h4>Sign Up</h4>}
+            <Button color="default" onClick={this.props.toggleModal}>
+              X
             </Button>
           </div>
+          <hr />
+          {this.state.isLogin ? (
+            <LoginForm toggleModal={this.props.toggleModal} toggleForm={this.toggleForm} />
+          ) : (
+            <SignUpForm toggleModal={this.props.toggleModal} toggleForm={this.toggleForm} />
+          )}
         </Container>
       </Background>
     )

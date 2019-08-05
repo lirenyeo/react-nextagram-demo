@@ -36,7 +36,7 @@ class MyNavbar extends React.Component {
     const { showModal } = this.state
     return (
       <div>
-        {showModal && <AuthModal toggleModal={this.toggleModal} />}
+        {showModal && <AuthModal toggleModal={this.toggleModal} toggleModal={this.toggleModal} />}
         <Navbar color="light" light expand="xs">
           <NavbarBrand onClick={this.goToHome} href="/">
             <img
