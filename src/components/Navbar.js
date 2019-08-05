@@ -14,7 +14,7 @@ import AuthModal from './AuthModal'
 class MyNavbar extends React.Component {
   state = {
     navbarExpanded: false,
-    showModal: true
+    showModal: false
   }
 
   toggleNavExpand = () => {
@@ -36,7 +36,7 @@ class MyNavbar extends React.Component {
     const { showModal } = this.state
     return (
       <div>
-        {showModal && <AuthModal toggleModal={this.toggleModal} toggleModal={this.toggleModal} />}
+        <AuthModal toggleModal={this.toggleModal} showModal={showModal} />
         <Navbar color="light" light expand="xs">
           <NavbarBrand onClick={this.goToHome} href="/">
             <img
