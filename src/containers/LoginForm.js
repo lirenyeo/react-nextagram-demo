@@ -31,7 +31,7 @@ class LoginForm extends Component {
       username,
       password
     })
-      .then(result => {
+      .then(() => {
         toast('Successfully Logged In!')
       })
       .catch(error => {
