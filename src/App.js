@@ -3,9 +3,8 @@ import { Route, Switch } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-
 import Navbar from './components/Navbar'
-import HomePage from './pages/HomePage'
+import MainPage from './pages/MainPage'
 import UserProfilePage from './pages/UserProfilePage'
 
 class App extends React.Component {
@@ -15,7 +14,7 @@ class App extends React.Component {
         <ToastContainer />
         <Navbar />
         <Switch>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={MainPage} />
           <Route path="/users/:id" component={UserProfilePage} />
         </Switch>
       </div>

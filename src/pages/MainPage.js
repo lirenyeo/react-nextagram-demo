@@ -38,7 +38,7 @@ const UserCardHeader = styled(CardHeader)`
   }
 `
 
-class HomePage extends React.Component {
+class MainPage extends React.Component {
   state = {
     users: [],
     loading: true
@@ -87,4 +87,4 @@ class HomePage extends React.Component {
   }
 }
 
-export default HomePage
+export default MainPage
