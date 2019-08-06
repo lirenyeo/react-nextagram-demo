@@ -33,7 +33,6 @@ class LoginForm extends Component {
     })
       .then(result => {
         toast('Successfully Logged In!')
-        console.log(result)
       })
       .catch(error => {
         toast(error.response.data.message)
